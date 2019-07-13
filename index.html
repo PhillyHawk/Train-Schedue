@@ -1,15 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Train Schedule</title>
-  <link rel="stylesheet" type="text/css" href="assets/css/style">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Monoton|Viga&display=swap" rel="stylesheet">
 </head>
+
 <body>
+  <header class="conatiner">
+    <div class="jumbotron">
+      <h1 class="display-4" id="coasterTitle1">The Jersey Shore</h1>
+      <h1 class="display-4" id="coasterTitle">Roller Coaster Schedule</h1>
+    </div>
+  </header>
+  <div class="cardHolder">
+  <div class="card" style="width: 100%;">
+    <div class="card-header">
+     <h3>Current Train Schedule</h3> 
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">RollerCoaster</th>
+          <th scope="col">Location</th>
+          <th scope="col">Frequency (min)</th>
+          <th scope="col">Next Ride</th>
+          <th scope="col">Leaving In (min)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Flitzer</td>
+          <td>Jenkinson's Boardwalk</td>
+          <td>15</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Crazy Mouse</td>>
+          <td>Steel Pier</td>
+          <td>8</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>The Joker</td>
+          <td>Six Flags Great Adventure</td>
+          <td>5</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>GaleForce!</td>
+          <td>Playland's Castaway Cove</td>
+          <td>9</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Shore Shot</td>
+          <td>Casino Pier</td>
+          <td>12</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Runaway Train Coaster</td>
+          <td>Gillian's Wonderland Pier</td>
+          <td>20</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Looping Star</td>
+          <td>Keansburg Amusement Park</td>
+          <td>17</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer text-muted">
+    </div>
+</div>
+  <div class="cardHolder">
+  <div class="card" style="width: 100%;">
+    <div class="card-header">
+      <h3>Add Train</h3>
+    </div>
+    <form><br>
+      <div class="form-group">
+        <label for="trainName"><h6>Train Name</h6></label>
+        <input type="text" class="form-control" id="train">
+      </div>
+      <div class="form-group">
+        <label for="trainLocation"><h6>Location</h6></label>
+        <input type="text" class="form-control" id="location">
+      </div>
+      <div class="form-group">
+        <label for="trainTime"><h6>First Train Time (HH:mm - military time)</h6></label>
+        <input type="text" class="form-control" id="location">
+      </div>
+      <div class="form-group">
+        <label for="trainFrequency"><h6>Frequency (min)</h6></label>
+        <input type="text" class="form-control" id="location">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  <div class="card-footer text-muted">
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
   <script type="text/javascript" src="assets/javascript/schedule.js"></script>
 </body>
+
 </html>
