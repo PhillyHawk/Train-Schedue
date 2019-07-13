@@ -12,9 +12,11 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Monoton|Viga&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/3f5de397b7.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
 </head>
 
 <body>
+  <div class="container">
   <header class="conatiner">
     <div class="jumbotron">
       <h1 class="display-4" id="coasterTitle1">The Jersey Shore</h1>
@@ -22,7 +24,7 @@
     </div>
   </header>
   <div class="cardHolder">
-  <div class="card" style="width: 100%;">
+  <div class="card" style="width: 69.5rem;">
     <div class="card-header">
      <h3>Current Train Schedule</h3> 
     </div>
@@ -93,25 +95,25 @@
     </div>
 </div>
   <div class="cardHolder">
-  <div class="card" style="width: 100%;">
+  <div class="card" style="width: 69.5rem;">
     <div class="card-header">
       <h3>Add Train</h3>
     </div>
     <form><br>
       <div class="form-group">
-        <label for="trainName"><h6>Train Name</h6></label>
+        <label for="name-input"><h6>Train Name</h6></label>
         <input type="text" class="form-control" id="train">
       </div>
       <div class="form-group">
-        <label for="trainLocation"><h6>Location</h6></label>
+        <label for="location-input"><h6>Location</h6></label>
         <input type="text" class="form-control" id="location">
       </div>
       <div class="form-group">
-        <label for="trainTime"><h6>First Train Time (HH:mm - military time)</h6></label>
+        <label for="firstTrain-input"><h6>First Train Time (HH:mm - military time)</h6></label>
         <input type="text" class="form-control" id="location">
       </div>
       <div class="form-group">
-        <label for="trainFrequency"><h6>Frequency (min)</h6></label>
+        <label for="frequency-input"><h6>Frequency (min)</h6></label>
         <input type="text" class="form-control" id="location">
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
@@ -129,7 +131,7 @@
 
 
 
-
+</div>
   <script type="text/javascript" src="assets/javascript/schedule.js"></script>
 </body>
 
