@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>Example of Time Telling</title>
+
+  <!-- Added Moment JS -->
+  <!-- This is NOT an API but it is acting as an API because we are getting JSON arrays. I am confused here. -->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+</head>
+
+<body>
+
+  <!-- Script -->
+
+  <script>
+    // Assume the following situations.
+
+    // (TEST 1)
+    // First Train of the Day is 3:00 AM
+    // Assume Train comes every 3 minutes.
+    // Assume the current time is 3:16 AM....
+    // What time would the next train be...? (Use your brain first)
+    // It would be 3:18 -- 2 minutes away
+
+    // (TEST 2)
+    // First Train of the Day is 3:00 AM
+    // Assume Train comes every 7 minutes.
+    // Assume the current time is 3:16 AM....
+    // What time would the next train be...? (Use your brain first)
+    // It would be 3:21 -- 5 minutes away
+
+
+    // ==========================================================
+
+    // Solved Mathematically
+    // Test case 1:
+    // 16 - 00 = 16
+    // 16 % 3 = 1 (Modulus is the remainder)
+    // 3 - 1 = 2 minutes away
+    // 2 + 3:16 = 3:18
+
+    // Solved Mathematically
+    // Test case 2:
+    // 16 - 00 = 16
+    // 16 % 7 = 2 (Modulus is the remainder)
+    // 7 - 2 = 5 minutes away
+    // 5 + 3:16 = 3:21
+
+    // Assumptions
+    // This is clear - we are setting a variable equal to "3" (a number) because this the time between trains (obviously, we are not using SEPTA)
+    var tFrequency = 3;
+
+    // Time is 3:30 AM
+    // I assume we are using 3:30am instead 3:00am so as to not confuse the variables. 
+    var firstTime = "03:30";
+
+    // First Time (pushed back 1 year to make sure it comes before current time)
+
+    // We have pushed back the first time to 2018, which shows up in the console with the first Object Array under "d". My understanding is that this is so the running date versus the schedule date do not conflict. 
+
+    // The Variable "firstTimeConverted" is a real-time clock (it runs irrespective of the train schedule) and that has been reformatted so its times can be added and subtracted. It is set a year in the past so to be a constant that is running at all times irrespective of the schedule. 
+
+    // firstTimeConverted equals the firstTime variable but reformatted to "HH:mm" and then initialized a year ago. It achieves this by utilizing the functions from MomemntJS. 
+
+    // "Moment" is a function from MomentJS that calls a certain point in time and space. I am assuming its default is currentTime. 
+
+    // "HH:mm" refers to a method formatting how time is displayed. 
+
+    // "Subtract" calls a function that subtracts an argument ("1") from a preceding argument ("firstTime"). The parameter "years" indicates where this is subtracted from. So "1 year" is subtracted from "first time" to give us firstTimeConverted which initializes in 2018. 
+
+    // firstTimeConverted 
+    var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+    console.log(firstTimeConverted);
+
+    // The Variable "currentTime" is set to the default value of the function "moment," which happens to be NOW. In the console.log, it is formatted into "hh:mm" for subtraction purposes. 
+    // Current Time
+    var currentTime = moment();
+    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+
+    // The following section will calculat time difference between two events. 
+    
+    // The variable diffTime is set equal to the difference between MomentJS function of "moment" and the function of moment in firstTimeConverted, converted into minutes. 
+
+    // In simple math, this is calculating the difference between two distinct time points. 
+
+    // Difference between the times
+    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    console.log("DIFFERENCE IN TIME: " + diffTime);
+
+
+    // This variable is set equal to the remaining time, which is calculated by dividing the Time Difference by Frequency, and then taking the remainder. 
+    // Time apart (remainder)
+    var tRemainder = diffTime % tFrequency;
+    console.log(tRemainder);
+
+    // this should be clear. 
+    // Minute Until Train
+    var tMinutesTillTrain = tFrequency - tRemainder;
+    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
+    // This variable just calculates the time until the next train by taking current time (default value of 'moment' function) and adding  "minutes until next Train"
+
+    
+    // Next Train
+    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+  </script>
+
+</body>
+
+</html>
