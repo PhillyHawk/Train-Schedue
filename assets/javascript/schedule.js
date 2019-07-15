@@ -64,14 +64,14 @@ database.ref().on("child_added", function (childSnapshot) {
   console.log(firstTrain);
   console.log(frequency);
 
-  var newRow = $("<tr>").append(
-    $("<td>").text(name),
-    $("<td>").text(location),
-    $("<td>").text(firstTrain),
-    $("<td>").text(frequency),
-    $("<td>").text(nextRide),
-    $("<td>").text(leavingIn)
-  );
+  // var newRow = $("<tr>").append(
+  //   $("<td>").text(name),
+  //   $("<td>").text(location),
+  //   $("<td>").text(firstTrain),
+  //   $("<td>").text(frequency),
+  //   $("<td>").text(nextRide),
+  //   $("<td>").text(leavingIn)
+  // );
 
   // Append the new row to the table
   $("#train-table > tbody").append(newRow);
@@ -99,7 +99,19 @@ database.ref().on("child_added", function (childSnapshot) {
   // Next Train
   var nextRide = moment().add(leavingIn, "minutes");
   console.log("ARRIVAL TIME: " + moment(nextRide).format("hh:mm"));
-  $("#trainTable > tbody").append("<tr><td>" + name + "</td><td>" + location  + "</td><td>" + frequency + "</td><td>" + nextRide + "</td><td>" + leavingIn + "</td></tr>");
+  $("#trainTable > tbody").append("<td><td>" + name + "</td><td>" + location  + "</td><td>" + frequency + "</td><td>" + nextRide + "</td><td>" + leavingIn + "</td></tr>");
+
+  var newRow = $("<tr>").append(
+    $("<td>").text(name),
+    $("<td>").text(location),
+    $("<td>").text(firstTrain),
+    $("<td>").text(frequency),
+    $("<td>").text(nextRide),
+    $("<td>").text(leavingIn)
+  );
+
+  //Append the new row to the table
+  $("#train-table > tbody").append(newRow);
 
 });
 
