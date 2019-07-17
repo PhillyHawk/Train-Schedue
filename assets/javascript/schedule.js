@@ -41,7 +41,7 @@ $("#add-train-button").on("click", function (event) {
 
   alert("Roller Coaster successfully");
 
-  //clears all of teh text-boxes
+  //clears all of the text-boxes
   $("name-input").val("");
   $("location-input").val("");
   $("firstTrain-input").val("");

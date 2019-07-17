@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6gGOLA3wg7UEzUKZupXKog_4QaqUyd9s&callback=initMap">
+    </script>
+  <style>
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Philadelpia Dog Parks</h1>
+  <div id="map"></div>
+  <script>
+    var map;
+    var InforObj = [];
+    var centerCords = {
+      lat: 39.952583,
+      lng:-75.165222
+    };
+    var markersOnMap = [{
+      placeName: "Palmer Doggie Depot",
+      address: "37 W Palmer St, Philadelphia, PA 19125",
+      LatLng: [{
+        lat: 39.975891,
+        lng: -75.133217
+      }]
+    },
+    {
+      placeName: "Seger Dog Park",
+      address:" 1001 Rodman St, Philadelphia, PA 19107",
+      LatLng: [{
+        lat: 39.943310,
+        lng:-75.158729
+      }]
+    },
+    {
+      placeName: "Penn's Landing Dog Park",
+      address:" 1 N Delaware Ave, Philadelphia, PA 19106",
+      LatLng: [{
+        lat: 39.953430,
+        lng: -75.140120
+      }]
+    },
+    {
+      placeName: "Liberty Lands",
+      address:"913 N 3rd St, Philadelphia, PA 19123",
+      LatLng: [{
+        lat: 39.965800,
+        lng: -75.141910
+      }]
+    },
+    {
+      placeName: "Schuylkill River Park",
+      address:"300 S 25th St, Philadelphia, PA 19103",
+      LatLng: [{
+        lat: 39.983140,
+        lng: -75.099974
+      }]
+    },
+    {
+      placeName: "Mario Lanza Dog Run",
+      address:"235 Queen St, Philadelphia, PA 19147",
+      LatLng: [{
+        lat: 39.937321,
+        lng: -75.147583
+      }]
+    },
+    {
+      placeName: "Monk's Dog Run",
+      address:"2899 E Allegheny Ave, Philadelphia, PA 19134",
+      LatLng: [{
+        lat: 39.983140,
+        lng: -75.099974
+      }]
+    },
+    {
+      placeName: "Roxbourgh Dog Park",
+      address:"4117 Mitchell St, Philadelphia, PA 19128",
+      LatLng: [{
+        lat: 40.026890,
+        lng: -75.211357
+      }]
+    },
+    {
+      placeName: "Gold Star Park",
+      address:"613 Wharton St, Philadelphia, PA 19147",
+      LatLng: [{
+        lat: 40.026890,
+        lng: -75.181152
+      }]
+    },
+    {
+      placeName: "Cianfrani Park",
+      address:"613 Wharton St, Philadelphia, PA 19147",
+      LatLng: [{
+        lat: 39.940400,
+        lng: -75.155670
+      }]
+    },
+    {
+      placeName: "Dickenson Square Park",
+      address:"515 Tasker St, Philadelphia, PA 19148",
+      LatLng: [{
+        lat: 39.928860,
+        lng: -75.154590
+      }]
+    },
+    {
+      placeName: "Fairmount Park East",
+      address:"Sedgley Dr, Philadelphia, PA 19136",
+      LatLng: [{
+        lat: 39.972340,
+        lng: -75.187530
+      }]
+    },
+    {
+      placeName: "Chew Playground",
+      addrress:"1800 Washington Ave, Philadelphia, PA 19146",
+      LatLng: [{
+        lat: 39.938270,
+        lng: -75.170020
+      }]
+    },
+    {
+      placeName: "Wharton Square Park",
+      address: "2300 Wharton St, Philadelphia, PA 19146",
+      LatLng: [{
+        lat: 39.933670,
+        lng: -75.163860
+      }]
+    },
+    {
+      placeName: "Piazza Dog Park",
+      address: "156 W Wildey St, Philadelphia, PA 19123",
+      LatLng: [{
+        lat: 39.966640,
+        lng: -75.138480
+      }]
+    }
+    ];
+
+    window.onload = function () {
+      initMap();
+    };
+
+    function addMarker() {
+      for (var i = 0; i < markersOnMap.length; i++) {
+        var contentString = '<div id="content"><h1>' + markersOnMap[i].placeName +
+          '</h1><p>' + markersOnMap[i].address +'</p></div>';
+
+        const marker = new google.maps.Marker({
+          position: markersOnMap[i].LatLng[0],
+          map: map
+        });
+
+        const infowindow = new google.maps.InfoWindow({
+          content: contentString,
+          maxWidth: 200
+        });
+
+        marker.addListener('click', function () {
+          closeOtherInfo();
+          infowindow.open(marker.get('map'), marker);
+          InforObj[0] = infowindow;
+        });
+        // marker.addListener('mouseover', function () {
+        //     closeOtherInfo();
+        //     infowindow.open(marker.get('map'), marker);
+        //     InforObj[0] = infowindow;
+        // });
+        // marker.addListener('mouseout', function () {
+        //     closeOtherInfo();
+        //     infowindow.close();
+        //     InforObj[0] = infowindow;
+        // });
+      }
+    }
+
+    function closeOtherInfo() {
+      if (InforObj.length > 0) {
+        /* detach the info-window from the marker ... undocumented in the API docs */
+        InforObj[0].set("marker", null);
+        /* and close it */
+        InforObj[0].close();
+        /* blank the array */
+        InforObj.length = 0;
+      }
+    }
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: centerCords
+      });
+      addMarker();
+    }
+  //   function initMap() {
+  //     //map options
+  //     var options = {
+  //       center: new google.maps.LatLng(39.952583, -75.165222),
+  //       zoom: 13
+  //     }
+  //     //new map
+  //     var map = new google.maps.Map(document.getElementById("map"), options);
+
+
+  //     //coordinates for dog parks
+  //     //array
+  //     var markers = [
+  //       { coords: { lat: 39.975891, lng: -75.133217 }, content: "<h1>Palmer Doggie Depot</h1>" },
+
+  //       { coords: { lat: 39.943310, lng: -75.158729 }, content: "<h1>Seger Dog Park</h1>" },
+
+  //       { coords: { lat: 39.953430, lng: -75.140120 }, content: "<h1>Penn's Landing Dog Park</h1>" },
+
+  //       { coords: { lat: 39.965800, lng: 39.965800 }, content: "<h1>Liberty Lands</h1>" },
+
+  //       { coords: { lat: 39.959032, lng: -75.181152 }, content: "<h1>Schuylkill River Park</h1>" },
+  //       { coords: { lat: 39.983140, lng: -75.099974 }, content: "<h1>Monk's Dog Run</h1>" },
+  //       { coords: { lat: 39.937321, lng: 39.937321 }, content: "<h1>Mario Lanza Dog Run</h1>" },
+  //       { coords: { lat: 40.026890, lng: -75.211357 }, content: "<h1>Roxbourgh Dog Park</h1>" },
+  //       { coords: { lat: 39.966640, lng: -75.138480 }, content: "<h1>Piazza Dog Park</h1>" },
+  //       { coords: { lat: 39.959032, lng: -75.181152 }, content: "<h1>Gold Star Park</h1>" },
+
+  //     ];
+
+  //     //loop thru markers
+  //     for (var i = 0; i < markers.length; i++) {
+  //       //add marker
+  //       // if (markers[i].content) {
+  //         var infowindow = new google.maps.InfoWindow({
+  //           content: markers[i].content
+  //         });
+
+  //       // }
+  //       var marker = new google.maps.Marker({
+  //         position: new google.maps.LatLng(markers[i].coords.lat, markers[i].coords.lng),
+  //         map: map
+  //       });
+  //       marker.addListener("click", function () {
+  //         infowindow.open(map, marker);
+  //       });
+  //     }
+
+  //     // addMarker({ coords: { lat: 39.975891, lng: -75.133217 }, content: "<h1>Palmer Doggie Depot</h1>" });
+  //     // addMarker({ coords: { lat: 39.943310, lng: -75.158729 }, content: "<h1>Seger Dog Park</h1>" });
+  //     // addMarker({ coords: { lat: 39.953430, lng: -75.140120 }, content: "<h1>Penn's Landing Dog Park</h1>" });
+  //     // addMarker({ coords: { lat: 39.965800, lng: -75.141910 }, content: "<h1>Liberty Lands</h1>" });
+  //     // addMarker({ coords: { lat: 39.959032, lng: -75.181152 }, content: "<h1>Schuylkill River Park</h1>" });
+
+  //     //adding a new marker
+  //     // function addMarker(props) {
+  //       // var marker = new google.maps.Marker({
+  //       //   position: props.coords,
+  //       //   map: map
+  //       // });
+
+  //       // if (props.content) {
+  //       //   var infowindow = new google.maps.infowindow({
+  //       //     content: props.content
+  //       //   });
+
+  //       //   marker.addListener("click", function () {
+  //       //     infowindow.open(map, marker);
+  //       //   });
+  //       // }
+  //     // }
+  //   }
+  // </script>
+
+</body>
+
+</html>
